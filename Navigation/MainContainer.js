@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-
+import { createStackNavigator } from '@react-navigation/stack';
 import IonIcon from 'react-native-vector-icons/Ionicons';
 
 //Screens
@@ -12,6 +12,7 @@ import Favorites from './screens/Favorites';
 import Home from './screens/Home';
 import Profile from './screens/Profile';
 import Wallet from './screens/Wallet';
+import AddMoney from './screens/AddMoneyScreen';
 
 //Screen names
 const cartName = 'cart';
@@ -19,9 +20,11 @@ const favoritesName = 'favorites';
 const homeName = 'home';
 const profileName = 'profile';
 const walletName = 'wallet';
+const addMoneyName = 'addMoney';
 
 
 const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 export default function MainContainer(){
     return(
@@ -58,7 +61,7 @@ export default function MainContainer(){
             >
 
             <Tab.Screen name={homeName} component={Home}/>
-            <Tab.Screen name={walletName} component={Wallet}/>
+            <Tab.Screen name={walletName} component={Wallet} options={{ headerShown: false }}/>
             <Tab.Screen name={favoritesName} component={Favorites}/>
             <Tab.Screen name={cartName} component={Cart}/>
             <Tab.Screen name={profileName} component={Profile}/>
@@ -67,6 +70,8 @@ export default function MainContainer(){
            
 
             </Tab.Navigator>
+
+            
         </NavigationContainer>
     )
 }

@@ -2,8 +2,9 @@ import * as React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import COLORS from '../../constants/Colors';
 import IonIcon from 'react-native-vector-icons/Ionicons';
+import moneyOptions from '../../data/MoneyOptions';
 
-export default function AddMoney({navigation}){
+export default function AddMoneyScreen(){
     return(
         <View style={styles.container}>
             <View style={styles.info}>
@@ -15,6 +16,16 @@ export default function AddMoney({navigation}){
                     <IonIcon name="wallet" style={styles.icon}/>
                 </View>
             </View>
+            <View style={styles.priceOptionContainer}>
+                {moneyOptions.map(option=>(
+                    <View style={styles.optionContainer} key={option.id}>
+                        <Text>{option.amount}</Text>
+                    </View>
+                ))}
+
+
+            </View>
+
             <TouchableOpacity 
                 style={styles.button}
                 onPress={()=> navigation.navigate('addMoney')}
@@ -24,6 +35,7 @@ export default function AddMoney({navigation}){
         </View>
     )
 }
+
 
 const styles = StyleSheet.create({
     container:{
@@ -49,6 +61,21 @@ const styles = StyleSheet.create({
     icon:{
         color:COLORS.secondary,
         fontSize:30
+    },
+    priceOptionContainer:{
+        flexWrap:'wrap',
+        flexDirection:'row',
+        justifyContent:'space-evenly'
+
+    },
+    optionContainer:{
+        backgroundColor:COLORS.primary,
+        width:70,
+        height:30,
+        margin:5,
+        borderRadius:5,
+        alignItems:'center',
+        justifyContent:'center'
     },
     button:{
         backgroundColor:COLORS.secondary,
