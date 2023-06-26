@@ -39,7 +39,7 @@ export default function MainContainer(){
                     if(rn == homeName){
                         iconName = focused ? 'home' : 'home-outline'
                     }else if (rn == cartName){
-                        iconName = focused ? 'map' : 'map-outline'
+                        iconName = focused ? 'cart' : 'cart-outline'
                     } else if (rn == walletName){
                         iconName = focused ? 'person' : 'person-outline'
                     } else if(rn == favoritesName){
