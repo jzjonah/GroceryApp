@@ -1,10 +1,29 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import {View, Text, StyleSheet, ScrollView, Image, TouchableWithoutFeedback} from 'react-native';
 import COLORS from '../../constants/Colors';
-import popular from '../../data/Popular';
+import { db } from '../../Firebase/FirebaseConfig';
+import {collection, getDocs } from 'firebase/firestore';
+
 import IonIcon from 'react-native-vector-icons/Ionicons';
 
 export default function Popularitems(){
+    const[items, setItems] = useState([]);
+
+    const fetchPost = async () => {
+        await getDocs(collection(db, 'Items'))
+        .then((QuerySnapshot) => {
+            const newData = QuerySnapshot.docs.map((doc) => ({
+            ...doc.data(),
+            id: doc.id
+            }));
+            setItems(newData);
+        });
+    };
+
+    React.useEffect(()=>{
+        fetchPost();
+    }, [])
+
     return(
         <View style={styles.container}>
              <View style={styles.titleContainer}>
@@ -18,8 +37,8 @@ export default function Popularitems(){
                 contentContainerStyle={styles.scrollContainer}
                 showsHorizontalScrollIndicator={false}    
             >
-                {popular.map(pop=>(
-                  <View style={styles.mapContainer} key={pop.id}>
+                {items.map(item=>(
+                  <View style={styles.mapContainer} key={item.id}>
                     <View style={styles.pictureContainer}>
                         <Image 
                             source={require('../../assets/favicon.png')}
@@ -28,8 +47,8 @@ export default function Popularitems(){
                     </View>
                     <View style={styles.infoContainer}>
                         <View>
-                            <Text>{pop.title}</Text>
-                            <Text>{pop.price}</Text>
+                            <Text> {item.name}</Text>
+                            <Text> ${item.price}</Text>
                         </View>
                         <View style={styles.filterButton}>
                             <TouchableWithoutFeedback>
