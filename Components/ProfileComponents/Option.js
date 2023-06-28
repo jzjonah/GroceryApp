@@ -14,10 +14,17 @@ export default function Option({ icon, name }) {
   
   const styles = StyleSheet.create({
     container: {
-      width: '100%',
-      flexDirection: 'horizontal',
+      width: '90%',
+      height:55,
+      flexDirection:'row',
+      alignItems:'center',
+      marginHorizontal:15,
+      borderTopWidth:1
+  
+    
     },
     icon: {
       marginRight: 8,
+      fontSize:35
     },
   });
