@@ -13,6 +13,7 @@ import Home from './screens/Home';
 import Profile from './screens/Profile';
 import Wallet from './screens/Wallet';
 import AddMoney from './screens/AddMoneyScreen';
+import LoginScreen from './screens/LoginScreen';
 
 //Screen names
 const cartName = 'cart';
@@ -21,6 +22,7 @@ const homeName = 'home';
 const profileName = 'profile';
 const walletName = 'wallet';
 const addMoneyName = 'addMoney';
+const loginName = 'login'
 
 
 const Tab = createBottomTabNavigator();
@@ -66,14 +68,32 @@ export default function MainContainer(){
             <Tab.Screen name={cartName} component={Cart}/>
             <Tab.Screen name={profileName} component={Profile}/>
             
-            
-           
+            <Tab.Screen
+                name={addMoneyName}
+                options={{tabBarButton: () => null, tabBarVisible: false}}
+            >
+                {()=> (
+                    <Stack.Navigator>
+                        <Stack.Screen name={addMoneyName} component={AddMoney} options={{headerShown:false}} />
+                        
+                    </Stack.Navigator>
+                )}
+            </Tab.Screen>
 
-            </Tab.Navigator>
-
-            
+            <Tab.Screen
+                name={loginName}
+                options={{tabBarButton: () => null, tabBarVisible: false}}
+            >
+                {()=> (
+                    <Stack.Navigator>
+                        <Stack.Screen name={loginName} component={LoginScreen} options={{headerShown:false}} />
+                        
+                    </Stack.Navigator>
+                )}
+            </Tab.Screen>
+            </Tab.Navigator> 
         </NavigationContainer>
-    )
+    );
 }
 
 

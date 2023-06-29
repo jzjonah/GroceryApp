@@ -26,7 +26,7 @@ export default function Categories({navigation}){
         <View style={styles.container}>
             <View style={styles.titleContainer}>
                 <Text style={styles.title}>Categories </Text>
-                <Text style={{color:COLORS.secondary}} onPress={()=>navigation.navigate('favorites')}>
+                <Text style={{color:COLORS.secondary}} onPress={()=>navigation.navigate('addMoney')}>
                     see all
                 </Text>
             </View>

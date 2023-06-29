@@ -7,7 +7,7 @@ import ProfileOptions from '../../Components/ProfileComponents/ProfileOptions';
 export default function Profile({navigation}){
     return(
         <View style={{backgroundColor:'#F9F9F9', flex:1}} >
-            <ProfileHeader/>
+            <ProfileHeader navigation={navigation}/>
             <ProfileOptions/>
 
         </View>
