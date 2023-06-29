@@ -3,42 +3,35 @@ import { View, Text, TouchableOpacity, StyleSheet, KeyboardAvoidingView, TextInp
 import COLORS from '../../constants/Colors';
 import {auth} from '../../Firebase/FirebaseConfig.js'
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged} from "firebase/auth"
-import { useDispatch } from 'react-redux';
-import { setEmail } from '../../redux/actions';
 
 
 export default function LoginScreen({navigation}){
 
-    const[email, setEmailLocal] = useState('');
+    const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
-    const dispatch = useDispatch();
 
     useEffect(()=>{
         onAuthStateChanged(auth, user=>{
             if(user){
-                
                 navigation.navigate('home')
             }
         })
     })
 
     const handleSignUp = () => {
-        
         createUserWithEmailAndPassword(auth,email, password)
             .then(userCredentials => {
                 const user = userCredentials.user;
-                alert('registered in with' + user.email)
+                alert('registered in with', user.email)
             })
             .catch(error=> alert(error.message))
             setPassword('')
     }
     const handleLogin = () =>{
-        dispatch(setEmail(email))
         signInWithEmailAndPassword(auth,email, password)
             .then(userCredentials => {
                 const user = userCredentials.user;
-                
-                alert("logged in with" + user.email)
+                alert("logged in with", user.email)
             })
             .catch(error=> alert(error.message))
     }
@@ -50,7 +43,7 @@ export default function LoginScreen({navigation}){
                     placeholder='Email'
                     value={email}
                     style={styles.input}
-                    onChangeText={text=>setEmailLocal(text)}
+                    onChangeText={text=>setEmail(text)}
                 />
                 <TextInput
                     placeholder='Password'
