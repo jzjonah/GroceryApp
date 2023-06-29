@@ -1,10 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import MainContainer from './Navigation/MainContainer';
+import {Provider} from 'react-redux';
+import { Store } from './redux/store';
+
 export default function App() {
   return (
-    
-      <MainContainer/>
+      <Provider store={Store}>
+        <MainContainer/>
+      </Provider>
     
   );
 }
