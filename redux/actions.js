@@ -1,5 +1,6 @@
 export const SET_USER_NAME = 'SET_USER_NAME';
 export const SET_USER_EMAIL = 'SET_USER_EMAIL';
+export const ADD_TO_CART = 'ADD_TO_CART';
 
 export const setName = (name) => {
   return {
@@ -14,3 +15,10 @@ export const setEmail = (email) => {
     payload: email,
   };
 };
+
+export const addToCart = (item) => {
+  return {
+    type: ADD_TO_CART,
+    payload:item,
+  };
+}; 

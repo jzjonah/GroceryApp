@@ -7,7 +7,8 @@ import {setName, } from '../../redux/actions.js'
 
 
 export default function Cart({navigation}){
-    const { name,email } = useSelector((state) => state);
+    const name = useSelector(selectUserName);
+    const email = useSelector(selectUserEmail);
     
     const dispatch = useDispatch();
 
@@ -18,16 +19,7 @@ export default function Cart({navigation}){
     return(
         <View style={{flex: 1, alignItems:'center', justifyContent: 'center'}} >
             
-            <TextInput
-                    placeholder='Password'
-                    
-                    style={styles.input}
-                    onSubmitEditing={handleTextInputSubmit}
-                    
-                />
-            <Text>{name}</Text>
-            <Text>{email}</Text>
-            
+          
 
         </View>
   );
