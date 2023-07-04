@@ -3,12 +3,14 @@ import { View, Text, TouchableOpacity, StyleSheet, KeyboardAvoidingView, TextInp
 import COLORS from '../../constants/Colors';
 import {auth} from '../../Firebase/FirebaseConfig.js'
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged} from "firebase/auth"
-
+import { useSelector, useDispatch } from 'react-redux';
+import { setEmail } from '../../redux/actions';
 
 export default function LoginScreen({navigation}){
 
-    const[email, setEmail] = useState('');
+    const[email, setEmailLocal] = useState('');
     const[password, setPassword] = useState('');
+    const dispatch = useDispatch();
 
     useEffect(()=>{
         onAuthStateChanged(auth, user=>{
@@ -28,6 +30,7 @@ export default function LoginScreen({navigation}){
             setPassword('')
     }
     const handleLogin = () =>{
+        dispatch(setEmail(email));
         signInWithEmailAndPassword(auth,email, password)
             .then(userCredentials => {
                 const user = userCredentials.user;
@@ -43,7 +46,7 @@ export default function LoginScreen({navigation}){
                     placeholder='Email'
                     value={email}
                     style={styles.input}
-                    onChangeText={text=>setEmail(text)}
+                    onChangeText={text=>setEmailLocal(text)}
                 />
                 <TextInput
                     placeholder='Password'

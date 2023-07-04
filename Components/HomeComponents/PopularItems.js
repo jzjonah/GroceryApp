@@ -3,12 +3,24 @@ import {View, Text, StyleSheet, ScrollView, Image, TouchableWithoutFeedback} fro
 import COLORS from '../../constants/Colors';
 import { db } from '../../Firebase/FirebaseConfig';
 import {collection, getDocs } from 'firebase/firestore';
-
+import { useSelector, useDispatch } from 'react-redux';
 import IonIcon from 'react-native-vector-icons/Ionicons';
+import { addToCart, increaseCounter, addToTotal } from '../../redux/actions';
+
 
 export default function Popularitems(){
     const[items, setItems] = useState([]);
+    dispatch = useDispatch();
 
+    const {idNum} = useSelector((state) => state.cart);
+
+    const handleAddToCart = (name, id, price) => () => {
+        dispatch(addToCart(name,id));
+        dispatch(increaseCounter());
+        dispatch(addToTotal(price))
+        
+      };
+      
     const fetchPost = async () => {
         await getDocs(collection(db, 'Items'))
         .then((QuerySnapshot) => {
@@ -52,7 +64,7 @@ export default function Popularitems(){
                         </View>
                         <View style={styles.filterButton}>
                             <TouchableWithoutFeedback>
-                                <IonIcon name="add" style={styles.option}/>
+                                <IonIcon onPress={handleAddToCart(item.id, idNum, parseInt(item.price,10))} name="add" style={styles.option}/>
                             </TouchableWithoutFeedback>
                         </View>
                     </View>
