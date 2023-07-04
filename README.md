@@ -22,4 +22,5 @@ Next Steps of this project\
 -Fill out the options of items to purchase\
 -Add the relevant image assets for categories and items as placeholder are currently filling these places \
 -Implement favorites page to allow users to get to their desired items faster\
--Add sign in option to header to allow for easier sign in and a more efficient use path
+-Add sign in option to header to allow for easier sign in and a more efficient use path\
+-Add a quantity option to items and cart object
