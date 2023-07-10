@@ -1,4 +1,4 @@
-import { ADD_TO_CART, INCREASE_ID_COUNTER, ADD_TO_TOTAL} from "../actions";
+import { ADD_TO_CART, INCREASE_ID_COUNTER, ADD_TO_TOTAL, RESET_CART} from "../actions";
 
 
 
@@ -30,6 +30,15 @@ export const cartReducer = (state = initialCartState, action) => {
             cost: state.cart.cost + action.payload,
           },
         };
+      case RESET_CART:
+        return{
+          ...state,
+          cart:{
+            ...state.cart,
+            items:[],
+            cost: 0
+          }
+        }
     default:
       return state;
   }

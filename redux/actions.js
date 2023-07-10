@@ -3,6 +3,7 @@ export const SET_USER_EMAIL = 'SET_USER_EMAIL';
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const INCREASE_ID_COUNTER = 'INCREASE_ID_COUNTER';
 export const ADD_TO_TOTAL= "ADD_TO_TOTAL";
+export const RESET_CART = "RESET_CART";
 
 export const setName = (name) => {
   return {
@@ -40,4 +41,10 @@ return{
   payload: amount
 }
 
+}
+
+export const restCart = () => {
+  return{
+    type: RESET_CART
+  }
 }
